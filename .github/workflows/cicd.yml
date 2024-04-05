@@ -45,13 +45,42 @@ jobs:
       - name: Generate APK
         run: cd android && ./gradlew assembleDebug && cd ..
 
-      - name: Upload generated APK to Github
-        uses: actions/upload-artifact@v3
+      - name: Upload generated APK to shared
+        uses: sokuhatiku/ftp-upload-artifact@v1
         with:
-            name: app-generator-notifier
-            path: ./android/app/build/outputs/apk/debug/app-debug.apk
-            retention-days: 3
+          name: android-build
+          path: ./android/app/build/outputs/apk/debug/app-debug.apk
+          host: ${{ secrets.FTP_HOST }}
+          port: 21
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          secure: false
+          remote-path: ./projects/shiptracker/shiptracker.android/
 
+
+
+  # - name: Upload generated APK to Github
+  #   uses: actions/upload-artifact@v3
+  #   with:
+  #       name: app-build
+  #       path: ./android/app/build/outputs/apk/debug/app-debug.apk
+  #       retention-days: 3
+
+  # save_apk_on_hosting:
+  #   name: Prepare tools to generate the APK
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Download app artifact
+  #       uses: actions/download-artifact@v4
+  #       with:
+  #         name: app-build
+  #     - name: 📂 Upload files with ftp
+  #       uses: SamKirkland/FTP-Deploy-Action@4.0.0
+  #       with:
+  #         server: ${{ secrets.ftp_host }}
+  #         username: ${{ secrets.ftp_username }}
+  #         password: ${{ secrets.ftp_password }}
+  #         server-dir: ./projects/shiptracker/shiptracker.android/
 
 
   # build:
