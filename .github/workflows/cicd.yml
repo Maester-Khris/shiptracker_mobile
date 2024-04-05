@@ -54,6 +54,7 @@ jobs:
 
   save_apk_on_hosting:
     name: Copy APK
+    needs: prepare_tools
     runs-on: ubuntu-latest
     steps:
       - name: Download app artifact
