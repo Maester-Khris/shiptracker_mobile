@@ -52,11 +52,10 @@ jobs:
             path: ./android/app/build/outputs/apk/debug/app-debug.apk
             retention-days: 3
 
-  save_apk_on_hosting:
-    name: Copy APK
-    needs: prepare_tools
-    runs-on: ubuntu-latest
-    steps:
+  # save_apk_on_hosting:
+        # name: Copy APK
+        # runs-on: ubuntu-latest
+        # steps:
       - name: Download app artifact
         uses: actions/download-artifact@v4
         with:
