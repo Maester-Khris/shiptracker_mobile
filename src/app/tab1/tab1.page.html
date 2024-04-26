@@ -1,25 +1,114 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 1
+      <strong>Accueil, Suivi des expeditions</strong>
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
+  <div style="margin: 0 20px;">
+    <ion-text style="font-size: 18px;">
+      <h3 style="margin-left: 0px;font-weight: bold;">Détails de l'expédition</h3>
+      <div style="margin: 0;margin-left: 10px;">
+        <span>Expéditeur: Mr Nzekong Ulrich</span>
+        <span>Destinataire: Mme Nzebase Francoise</span>
+        <div>
+          <span style="margin-right: 6px;">Colis: (02)</span> <span>Poids total: (12) Kg</span>
+        </div>
+        <span>Code Unique: 001334344</span>
+        <span>Départ de l'expédition: 12-02-24</span>
+      </div>
+    </ion-text>
+  </div>
+ 
+
+
+  <!-- step tracking -->
+  <div style="margin-top: 40px;">
+    <h3 style="margin-left: 20px;font-weight: bold;">Trajet de l'expedition</h3>
+    <div style="display: flex; flex-direction:column; justify-content: center; align-items: center;">
+      <!-- stage component -->
+      <div style="display: flex; flex-direction: row; align-items: center; width: 310px;">
+        <div style="width: 50px; height: 50px;margin-right: 20px;">
+          <div style="display: flex; justify-content: center; align-items: center; height: 48px; width: 48px; background-color: #3dc2ff; border-radius: 24px; border: 1px solid black;">
+            <ion-icon name="checkmark-outline" style="color:white; font-size: 30px;"></ion-icon>
+          </div>
+        </div>
+        <div>
+          <p style="margin: 0px; font-size: 20px;">This is the First stage of this things</p>
+        </div>
+      </div>
+
+      <!-- line component -->
+      <div style="display: flex; flex-direction: row; width: 310px;">
+        <div style="width: 48px; display: flex; justify-content: center; align-items: center;margin-right: 20px;">
+          <div style="height: 80px;border: 1px dotted black; "></div>
+        </div>
+        <div style="display: flex;flex-direction: column;justify-content: center;">
+          <div style="background-color:#EDE4E3; width: 50px; height: 20px; border-radius: 4px; display: flex; justify-content: center; align-items: center;">
+            <div class="loader"></div>
+          </div>
+        </div>
+      </div>
+     
+      <!-- stage component -->
+      <div style="display: flex; flex-direction: row; align-items: center; width: 310px;">
+        <div style="width: 50px; height: 50px;margin-right: 20px;">
+          <div style="height: 48px; width: 48px; background-color: transparent; border-radius: 24px; border: 1px solid #3dc2ff;"></div>
+        </div>
+        <div>
+          <p style="margin: 0px; font-size: 20px;">This is the Second stage of this things</p>
+        </div>
+      </div>
+      
+      <!-- line component -->
+      <div style="display: flex; flex-direction: row; width: 310px;">
+        <div style="width: 48px; display: flex; justify-content: center; align-items: center;">
+          <div style="height: 80px;border: 1px dotted black; "></div>
+        </div>
+      </div>
+
+      <!-- stage component -->
+      <div style="display: flex; flex-direction: row; align-items: center; width: 310px;">
+        <div style="width: 50px; height: 50px;margin-right: 20px;">
+          <div style="height: 48px; width: 48px; background-color: transparent; border-radius: 24px; border: 1px solid #3dc2ff;"></div>
+        </div>
+        <div>
+          <p style="margin: 0px; font-size: 20px;">This is the Third stage of this things</p>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+   
+</ion-content>
+
+
+<!-- <ion-header collapse="condense">
     <ion-toolbar>
     </ion-toolbar>
-  </ion-header>
+  </ion-header> -->
 
-  <div class="wrapper" style="width:100%;height:100%;">
+  <!-- <div class="wrapper" style="width:100%;height:100%;">
     <div class="flex-center" style="height: 100%;">
       <div class="interface-desc">
         <ion-title size="large">Interface Principale</ion-title>
         <p>Hello from packet ship tracking</p>
       </div>
     </div>
-  </div>
+  </div> -->
+
+  <!-- <ion-list>
+    <ion-item *ngFor="let barcode of barcodes">
+      <ion-label position="stacked">{{ barcode.format }}</ion-label>
+      <ion-input type="text" [value]="barcode.rawValue"></ion-input>
+    </ion-item>
+  </ion-list>
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button (click)="scan()" [disabled]="!isSupported">
+      <ion-icon name="scan"></ion-icon>
+    </ion-fab-button>
+  </ion-fab> -->
   
   <!-- <app-explore-container name="Tab 1 page"></app-explore-container> -->
-</ion-content>

@@ -1,13 +1,28 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 2
+      <strong>Ajouter une nouvelle expedition</strong>
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
+
+  <div style="height: 100%; width: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+    <ion-button disabled="true">
+      <ion-icon slot="icon-only" name="keypad-outline"></ion-icon>
+      Saisir le Code
+    </ion-button>
+    <ion-button (click)="scan()">
+      <ion-icon slot="icon-only" name="barcode-outline"></ion-icon>
+      Scanner le Code
+    </ion-button>
+    <p *ngIf="code_available" style="margin: 20px auto; width: 300px; text-align: center; font-size: 19px; line-height: 1.4em;">
+      Le code de votre expedition est : <strong>{{code}}</strong>
+    </p>
+  </div>
+
+  <!-- <ion-header collapse="condense">
     <ion-toolbar>
     </ion-toolbar>
   </ion-header>
@@ -19,6 +34,6 @@
         <p>Hello from QR scanner interface</p>
       </div>
     </div>
-  </div>
+  </div> -->
   <!-- <app-explore-container name="Tab 2 page"></app-explore-container> -->
 </ion-content>
