@@ -1,0 +1,66 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button auto-hide="false"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Mon Compte</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card style="--background: #A8DADC;">
+    <ion-card-header style="padding:10px 16px;">
+      <ion-card-title><strong>Statistique</strong></ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <div class="shipping-expends p-relative">
+        <div style="width: 100%; margin: 0 auto; text-align: center;">
+          <span class="p-absolute">XOF</span>
+          <h3>2450</h3>
+          <ion-text>
+            <p>Total dépensé sur les expéditions</p>
+          </ion-text>
+        </div>
+        <div class="justify-center shipping-expends-numbers" style="width: 100%;justify-content: space-between;">
+          <div style="width: 50%;text-align: center;">
+            <span>23</span> <br>
+            <span>Expeditions</span>
+          </div>
+          <div style="width: 50%;text-align: center;">
+            <span>50</span><br>
+            <span>Colis Envoyés</span>
+          </div>
+        </div>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <div class="wrapper" style="margin: 0px 10px; margin-top: 20px;">
+    <h3><strong>Notification</strong></h3>
+    <ion-list>
+      <ion-item>
+        <ion-label>Alerte par Email</ion-label>
+        <ion-toggle [checked]="true"></ion-toggle>
+      </ion-item>
+      <ion-item>
+        <ion-label>Alerte par SMS <sub>Frais additionnels</sub></ion-label>
+        <ion-toggle></ion-toggle>
+      </ion-item>
+    </ion-list>
+
+    <h3><strong>Paiement et Services</strong></h3>
+    <ion-list>
+      <ion-item>
+        <ion-label>Methode de paiement</ion-label>
+        <ion-thumbnail slot="end" style="height: 30px;">
+          <img alt="om" src="/assets/images/om-logo.png" />
+        </ion-thumbnail>
+      </ion-item>
+      <ion-item>
+        <ion-label>Option de paiement</ion-label>
+        <ion-label slot="end">Abonement</ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+  
+</ion-content>

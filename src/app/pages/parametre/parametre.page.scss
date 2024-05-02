@@ -1,0 +1,51 @@
+.shipping-expends{
+    // height: 100%;
+}
+.shipping-expends span{
+    top:14px;
+    left:18%;
+    font-size:15px;
+    color: white;
+    font-weight: bold;
+}
+.shipping-expends h3{
+    font-weight: bolder;
+    font-family: 'Centabel', sans-serif!important;
+    font-size: 60px;
+    color: #FCA311;
+    letter-spacing: 2px;
+}
+.shipping-expends ion-text{
+    font-size: 16px;
+    display: block;
+    transform: translateY(-10px);
+}
+.shipping-expends ion-text p{
+    // margin-left: 40px;
+    color: #E63946;
+    font-weight: bold;
+}
+.shipping-expends-numbers div span:first-child{
+    color: dodgerblue;
+    font-family: 'Centabel', sans-serif!important;
+    font-size: 22px;
+    color: #FCA311;
+}
+.shipping-expends-numbers div span:last-child{
+    font-size: 17px;
+    color: #E63946;
+}
+ion-list ion-item ion-label, ion-toggle .toggle-wrapper{
+    font-size: 18px;
+}
+ion-toggle{
+    --handle-height: 30px;
+}
+ion-list{
+    padding-bottom: 0px;
+    border-radius: 15px;
+}
+ion-card, h3, ion-label{
+    font-family: 'Quicksand', sans-serif!important;
+    font-size: 17px;
+}

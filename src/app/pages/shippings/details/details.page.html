@@ -1,0 +1,118 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end" style="color:#0077B6">
+      <ion-button>
+        <ion-icon slot="icon-only" name="refresh-outline" color="black" style="font-size: 33px;"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Shipping Details</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <div class="wrapper">
+    <div class="info-section">
+      <ion-card>
+        <ion-card-content class="justify-start">
+          <img src="/assets/images/package_delivery.png" alt="" style="">
+          <h4><strong>Mr. Delano Tapuis schamp</strong></h4>
+        </ion-card-content>
+      </ion-card>
+      <ion-card>
+        <ion-card-content class="justify-start">
+          <img src="/assets/images/package_delivery.png" alt="" style="">
+          <h4><strong>Mme Josline Franklin</strong></h4>
+        </ion-card-content>
+      </ion-card>
+      <ion-card>
+        <ion-card-content class="justify-start">
+          <img src="/assets/images/package.png" alt="" style="">
+          <h4><strong>(03) - 25 x 75 x 40</strong></h4>
+        </ion-card-content>
+      </ion-card>
+      <ion-card>
+        <ion-card-content class="justify-start">
+          <img src="/assets/images/package_time.png" alt="" style="">
+          <h4><strong>Ven 12 Aout 2024</strong></h4>
+        </ion-card-content>
+      </ion-card>
+    </div>
+
+    <div class="road-section">
+      <ion-card>
+        <ion-card-content>
+          <div style="margin-bottom: 15px; width: 100%; display: flex; justify-content: space-between;">
+            <h3 style="margin-bottom: 15px;font-size: 18px; font-weight: bold;">Trajet de l'expedition</h3>
+            <div style="width: 25px; height: 15px; border-radius: 4px; display: flex; justify-content: center; align-items: center;">
+              <div class="loader"></div>
+            </div>
+          </div>
+          <div style="display: flex; flex-direction:column; justify-content: center; align-items: center;">
+            <!-- stage component -->
+            <div style="display: flex; flex-direction: row; align-items: center; width: 310px;">
+              <div style="width: 50px; height: 50px;margin-right: 20px;">
+                <div class="full-center" style="height: 48px; width: 48px; background-color: white; border-radius: 24px; border: 1px solid black;">
+                  <div style="height: 40px; width: 40px; background-color: #3dc2ff; border-radius: 20px; border: 1px solid #F5F5DC;">
+                    <ion-icon name="checkmark-outline" style="color:white; font-size: 30px;"></ion-icon>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <h3 style="margin: 0px; font-size: 17px;">This is the First stage of this things</h3>
+              </div>
+            </div>
+      
+            <!-- line component -->
+            <div style="display: flex; flex-direction: row; width: 310px; z-index: 10;">
+              <div style="width: 48px; display: flex; justify-content: center; align-items: center;margin-right: 20px;">
+                <div style="height: 60px;border: 1px dotted black; "></div>
+              </div>
+              <div style="display: flex;flex-direction: column;justify-content: center;">
+                
+              </div>
+            </div>
+            
+            <!-- stage component -->
+            <div style="display: flex; flex-direction: row; align-items: center; width: 310px;">
+              <div style="width: 50px; height: 50px;margin-right: 20px;">
+                <div class="full-center" style="height: 48px; width: 48px; background-color: white; border-radius: 24px; border: 1px solid black;">
+                  <div style="height: 40px; width: 40px; background-color: #3dc2ff; border-radius: 20px; border: 1px solid #F5F5DC;">
+                    
+                  </div>
+                </div>
+              </div>
+              <div>
+                <h3 style="margin: 0px; font-size: 17px;">This is the First stage of this things</h3>
+              </div>
+            </div>
+            
+            <!-- line component -->
+            <div style="display: flex; flex-direction: row; width: 310px;">
+              <div style="width: 48px; display: flex; justify-content: center; align-items: center;">
+                <div style="height: 60px;border: 1px dotted black; "></div>
+              </div>
+            </div>
+      
+            <!-- stage component -->
+            <div style="display: flex; flex-direction: row; align-items: center; width: 310px;">
+              <div style="width: 50px; height: 50px;margin-right: 20px;">
+                <div class="full-center" style="height: 48px; width: 48px; background-color: white; border-radius: 24px; border: 1px solid black;">
+                  <div style="height: 40px; width: 40px; background-color: #3dc2ff; border-radius: 20px; border: 1px solid #F5F5DC;">
+                    
+                  </div>
+                </div>
+              </div>
+              <div>
+                <h3 style="margin: 0px; font-size: 17px;">This is the First stage of this things</h3>
+              </div>
+            </div>
+          </div>
+        </ion-card-content>
+      </ion-card>
+    </div>
+  </div>
+</ion-content>

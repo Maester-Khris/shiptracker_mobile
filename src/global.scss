@@ -26,9 +26,68 @@
 @import "@ionic/angular/css/flex-utils.css";
 
 
-.flex-center{
+
+@font-face {
+    font-family: 'Dream Orphan';
+    src: url('/assets/fonts/Dream-Orphans-Bd.otf') format('opentype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Centabel';
+    src: url('/assets/fonts/centabel.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face{
+    font-family: 'Quicksand';
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url('/assets/fonts/quicksand.woff2') format('woff2');
+}
+
+
+
+.with-border{
+    border:1px solid black;
+}
+.justify-between{
+    display:flex;
+    flex-direction:row;
+    justify-content: space-between
+}
+.full-center{
+    display:flex;
+    flex-direction:row;
+    justify-content: center;
+    align-items:center;
+}
+.justify-start{
     display: flex;
-    flex-direction: row;
+    justify-content: start;
+}
+.justify-center{
+    display:flex;
+    flex-direction:row;
+    justify-content: center
+}
+.vertical-center{
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+.p-relative{
+    position: relative;;
+}
+.p-absolute{
+    position: absolute;;
+}
+
+// global styles
+ion-content{
+    --background: #ECF0F1;
 }

@@ -1,0 +1,20 @@
+<ion-content [fullscreen]="true">
+  <div class="wrapper vertical-center">
+    
+    <img src="/assets/images/airfreight1.png" alt="air_freight" >
+
+    <ion-text class="justify-center" style="padding-top:50ox;margin-bottom:200px;">
+      <h3 style="text-align: center;"><strong>Olbizgo Express<br>Mobile</strong></h3>
+    </ion-text>
+
+    <div class="button-group">
+      <ion-item class="with-border">
+        <ion-input type="email" label="Email utilisateur" labelPlacement="floating" placeholder="Saisissze votre @emaill" [(ngModel)]="email"></ion-input>
+      </ion-item>
+      <ion-item class="with-border">
+        <ion-input type="password" label="Mot de passe" labelPlacement="floating" placeholder="Saisissze votre mot de passe" [(ngModel)]="pass"></ion-input>
+      </ion-item>
+      <ion-button expand="block" (click)="connect()">Connexion </ion-button> 
+    </div>
+  </div>
+</ion-content>

@@ -1,0 +1,55 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button auto-hide="false"></ion-menu-button>
+    </ion-buttons>
+    <ion-buttons slot="end" style="color:#0077B6">
+      <ion-button>
+        <ion-icon slot="icon-only" name="swap-vertical-outline" color="black"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Mes Expeditions</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+ <div class="wrapper">
+  <ion-list lines="none">
+    <ion-item button routerLink="/shippings/details">
+      <ion-card>
+        <div class="status-icon" >
+          <img src="/assets/images/delivery.gif" alt="" style="height: 40px; width: 40px;transform:translateY(-6px);">
+        </div>
+        <ion-card-header>
+          <ion-card-title><strong>Ship00123454323234</strong></ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <p>02 colis (75 x 25 x 30)</p>
+          <p>12/04/2022 12h30</p>
+        </ion-card-content>
+      </ion-card>
+    </ion-item>
+
+    <ion-item button routerLink="/shippings/details">
+      <ion-card>
+        <div class="status-icon">
+          <img src="/assets/images/delivered.gif" alt="" style="height: 30px; width: 30px;">
+        </div>
+        <ion-card-header>
+          <ion-card-title><strong>Ship00123454323234</strong></ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <p>02 colis (75 x 25 x 30)</p>
+          <p>12/04/2022 12h30</p>
+        </ion-card-content>
+      </ion-card>
+    </ion-item>
+  </ion-list>
+
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button class="main-fab" (click)="scan()">
+      <ion-icon name="scan-outline" color="#F5F5DC" style="font-size: 25px; font-weight: bolder;"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+ </div>
+</ion-content>

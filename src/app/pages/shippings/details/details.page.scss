@@ -1,0 +1,49 @@
+@import url('../../../../theme/loader.css');
+
+ion-button{
+    --padding-top: 0px!important;
+    --padding-bottom: 0px!important;
+    --padding-start: 0px!important;
+    --padding-end: 0px!important;
+}
+.wrapper{
+    height: 100%;
+    overflow-y: hidden;
+}
+ion-card{
+    --background: #C0D6E8;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 17px;
+}
+.info-section{
+    height: 38%;
+    // margin-bottom: 15px;
+}
+.road-section{
+    height: 58%;
+}
+.road-section ion-card{
+    --background: white;
+    height: 100%;
+}
+.info-section ion-icon{
+    background-color: white;
+    margin-right: 15px;
+}
+ion-icon{
+    font-size: 27px;
+    color: #6495ED;
+    padding: 4px;
+    border-radius: 3px;
+}
+img{
+    height:30px;width:30px;margin-right: 10px;
+}
+img + h4{
+    align-self: center;
+    font-size: 17px;
+}
+
+.loader{
+    --_g: no-repeat radial-gradient(circle closest-side, #5598ff 90%, #0000);
+}
