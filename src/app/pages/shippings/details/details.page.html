@@ -4,7 +4,7 @@
       <ion-back-button></ion-back-button>
     </ion-buttons>
     <ion-buttons slot="end" style="color:#0077B6">
-      <ion-button>
+      <ion-button (click)="refresh()">
         <ion-icon slot="icon-only" name="refresh-outline" color="black" style="font-size: 33px;"></ion-icon>
       </ion-button>
     </ion-buttons>
@@ -14,105 +14,89 @@
 
 <ion-content [fullscreen]="true">
 
-  <div class="wrapper">
-    <div class="info-section">
-      <ion-card>
-        <ion-card-content class="justify-start">
-          <img src="/assets/images/package_delivery.png" alt="" style="">
-          <h4><strong>Mr. Delano Tapuis schamp</strong></h4>
-        </ion-card-content>
-      </ion-card>
-      <ion-card>
-        <ion-card-content class="justify-start">
-          <img src="/assets/images/package_delivery.png" alt="" style="">
-          <h4><strong>Mme Josline Franklin</strong></h4>
-        </ion-card-content>
-      </ion-card>
-      <ion-card>
-        <ion-card-content class="justify-start">
-          <img src="/assets/images/package.png" alt="" style="">
-          <h4><strong>(03) - 25 x 75 x 40</strong></h4>
-        </ion-card-content>
-      </ion-card>
-      <ion-card>
-        <ion-card-content class="justify-start">
-          <img src="/assets/images/package_time.png" alt="" style="">
-          <h4><strong>Ven 12 Aout 2024</strong></h4>
-        </ion-card-content>
-      </ion-card>
-    </div>
+  <!-- No Internet Component -->
+  <div *ngIf="isNetworkWorking==false; else shippingDetail" class="vertical-center" style="width: 100%; height: 100%;font-family: 'Quicksand', sans-serif;">
+    <img src="/assets/images/offline.png" alt="" style="width:150px;height:150px;margin-bottom:20px;">
+    <h3 style="font-size: 17px;"><strong>Une Erreur est survenu</strong></h3>
+    <p style="text-align: center; font-size: 16px; margin-top: 0px;">Vérifiez votre connexion internet et vos paramètres reseaux.</p>
+  </div>  
 
-    <div class="road-section">
-      <ion-card>
-        <ion-card-content>
-          <div style="margin-bottom: 15px; width: 100%; display: flex; justify-content: space-between;">
-            <h3 style="margin-bottom: 15px;font-size: 18px; font-weight: bold;">Trajet de l'expedition</h3>
-            <div style="width: 25px; height: 15px; border-radius: 4px; display: flex; justify-content: center; align-items: center;">
-              <div class="loader"></div>
-            </div>
-          </div>
-          <div style="display: flex; flex-direction:column; justify-content: center; align-items: center;">
-            <!-- stage component -->
-            <div style="display: flex; flex-direction: row; align-items: center; width: 310px;">
-              <div style="width: 50px; height: 50px;margin-right: 20px;">
-                <div class="full-center" style="height: 48px; width: 48px; background-color: white; border-radius: 24px; border: 1px solid black;">
-                  <div style="height: 40px; width: 40px; background-color: #3dc2ff; border-radius: 20px; border: 1px solid #F5F5DC;">
-                    <ion-icon name="checkmark-outline" style="color:white; font-size: 30px;"></ion-icon>
-                  </div>
+  <ng-template #shippingDetail>
+    <div class="wrapper">
+      <div class="info-section">
+        <ion-card>
+          <ion-card-content class="justify-start">
+            <img src="/assets/images/package_delivery.png" alt="" style="">
+            <h4><strong>Mr/Mme. {{shipping.sender}}</strong></h4>
+          </ion-card-content>
+        </ion-card>
+        <ion-card>
+          <ion-card-content class="justify-start">
+            <img src="/assets/images/package_delivery.png" alt="" style="">
+            <h4><strong>Mr/Mme. {{shipping.receiver}}</strong></h4>
+          </ion-card-content>
+        </ion-card>
+        <ion-card>
+          <ion-card-content class="justify-start">
+            <img src="/assets/images/package.png" alt="" style="">
+            <h4><strong>({{shipping.package_size}}) - 25 x 75 x {{shipping?.packages?.[0]?.weight}}</strong></h4>
+          </ion-card-content>
+        </ion-card>
+        <ion-card>
+          <ion-card-content class="justify-start">
+            <img src="/assets/images/package_time.png" alt="" style="">
+            <h4><strong>{{shipping.departure_date | date :  "dd.MM.y à H\'h\'mm\'min\'"}}</strong></h4>
+          </ion-card-content>
+        </ion-card>
+      </div>
+      <div class="road-section">
+        <ion-card>
+          <ion-card-content>
+            <div style="margin-bottom: 15px; width: 100%; display: flex; justify-content: space-between;">
+              <h3 style="margin-bottom: 15px;font-size: 18px; font-weight: bold;">Trajet de l'expedition</h3>
+              <div *ngIf="shipping.status_exp != 'DELIVERED'; else onGoing" style="width: 25px; height: 15px; border-radius: 4px; display: flex; justify-content: center; align-items: center;">
+                <div class="loader"></div>
+              </div>
+              <ng-template #onGoing>
+                <div>
+                  <ion-icon slot="icon-only" name="checkmark-done-circle" style="color: #FCA311;font-size: 34px;transform: translateY(-7px);"></ion-icon>
                 </div>
-              </div>
-              <div>
-                <h3 style="margin: 0px; font-size: 17px;">This is the First stage of this things</h3>
-              </div>
+              </ng-template>
             </div>
-      
-            <!-- line component -->
-            <div style="display: flex; flex-direction: row; width: 310px; z-index: 10;">
-              <div style="width: 48px; display: flex; justify-content: center; align-items: center;margin-right: 20px;">
-                <div style="height: 60px;border: 1px dotted black; "></div>
-              </div>
-              <div style="display: flex;flex-direction: column;justify-content: center;">
+            <div style="display: flex; flex-direction:column; justify-content: center; align-items: center;">
+              
+              <div *ngFor="let points of shipping.route_points; let counter=index">
                 
-              </div>
-            </div>
-            
-            <!-- stage component -->
-            <div style="display: flex; flex-direction: row; align-items: center; width: 310px;">
-              <div style="width: 50px; height: 50px;margin-right: 20px;">
-                <div class="full-center" style="height: 48px; width: 48px; background-color: white; border-radius: 24px; border: 1px solid black;">
-                  <div style="height: 40px; width: 40px; background-color: #3dc2ff; border-radius: 20px; border: 1px solid #F5F5DC;">
-                    
+                <div style="display: flex; flex-direction: row; align-items: center; width: 310px;">
+                  <div style="width: 50px; height: 50px;margin-right: 20px;">
+                    <div class="full-center" style="height: 48px; width: 48px; background-color: white; border-radius: 24px; border: 1px solid black;">
+                      <div style="height: 40px; width: 40px; background-color: #3dc2ff; border-radius: 20px; border: 1px solid #F5F5DC;">
+                        <ion-icon *ngIf="points.point_id < shipping.actual_point_id; else onAir" name="checkmark-outline" style="color:#FCA311; font-size: 30px;"></ion-icon>
+                        <ng-template #onAir>
+                          <ion-icon name="airplane-outline" style="color:white; font-size: 30px;"></ion-icon>
+                        </ng-template>
+                      </div>
+                    </div>
+                  </div>
+                  <div>
+                    <h3 style="margin: 0px; font-size: 17px;">{{points.point_name}}</h3>
+                  </div>
+                </div>
+
+                
+                <div *ngIf="counter < (shipping.route_size -1) "   style="display: flex; flex-direction: row; width: 310px; z-index: 10;">
+                  <div style="width: 48px; display: flex; justify-content: center; align-items: center;margin-right: 20px;">
+                    <div style="height: 60px;border: 1px dotted black; "></div>
+                  </div>
+                  <div style="display: flex;flex-direction: column;justify-content: center;">
                   </div>
                 </div>
               </div>
-              <div>
-                <h3 style="margin: 0px; font-size: 17px;">This is the First stage of this things</h3>
-              </div>
+              
             </div>
-            
-            <!-- line component -->
-            <div style="display: flex; flex-direction: row; width: 310px;">
-              <div style="width: 48px; display: flex; justify-content: center; align-items: center;">
-                <div style="height: 60px;border: 1px dotted black; "></div>
-              </div>
-            </div>
-      
-            <!-- stage component -->
-            <div style="display: flex; flex-direction: row; align-items: center; width: 310px;">
-              <div style="width: 50px; height: 50px;margin-right: 20px;">
-                <div class="full-center" style="height: 48px; width: 48px; background-color: white; border-radius: 24px; border: 1px solid black;">
-                  <div style="height: 40px; width: 40px; background-color: #3dc2ff; border-radius: 20px; border: 1px solid #F5F5DC;">
-                    
-                  </div>
-                </div>
-              </div>
-              <div>
-                <h3 style="margin: 0px; font-size: 17px;">This is the First stage of this things</h3>
-              </div>
-            </div>
-          </div>
-        </ion-card-content>
-      </ion-card>
-    </div>
-  </div>
+          </ion-card-content>
+        </ion-card>
+      </div>
+    </div> 
+  </ng-template>
 </ion-content>

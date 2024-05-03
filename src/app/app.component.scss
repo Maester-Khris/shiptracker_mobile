@@ -49,6 +49,11 @@ ion-menu{
 .user-info h3{
     margin-top: 0px;
     margin-bottom: 0px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 200px;
+    text-transform: capitalize;
 }
 .user-info ion-text{
     color:white;

@@ -45,4 +45,13 @@ export class StorageService {
     })
   }
 
+  async updateOne(key:string, element:any){
+    this.read(key).then(data =>{
+      let elts = data.value ? [... JSON.parse(data.value)] : [];
+      var foundIndex = elts.findIndex(elt=> elt.uuid == element.uuid);
+      elts[foundIndex] = element;
+      this.create(key, JSON.stringify(elts));
+    });
+  }
+
 }

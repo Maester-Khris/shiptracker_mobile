@@ -4,9 +4,10 @@
       <div class="header-menu full-center">
         <div class="user-info-logout with-border" >
           <div class="user-info justify-start p-relative">
-            <div class="p-absolute" style="right:0px;top:5px;">
-              <ion-button style="--background:transparent;--box-shadow:0px 0px 0px rgba(0, 0, 0, 0.5);">
-                <ion-icon slot="icon-only" name="exit-outline" style="font-size: 40px; color:darkslategrey;"></ion-icon>
+            <div class="p-absolute" style="right:0px;top:0px;">
+              <ion-button (click)="logout()" style="--background:transparent;--box-shadow:0px 0px 0px rgba(0, 0, 0, 0.5);">
+                <!-- <ion-icon slot="icon-only" name="exit-outline" style="font-size: 40px; color:darkslategrey;"></ion-icon> -->
+                <img src="/assets/images/logout.png" alt="" style="height: 40px; width: 40px!important;">
               </ion-button>
             </div>
             <div id="circle-external" class="full-center">
@@ -16,8 +17,8 @@
             </div>
             <div style="margin-top: 20px;">
               <ion-text>
-                <h3><strong>Amelie Wabey</strong></h3>
-                <span>amelieaffaire.com</span>
+                <h3><strong>{{logged_user.name}}</strong></h3>
+                <span>{{logged_user.email}}</span>
               </ion-text>
             </div>
           </div>
@@ -35,15 +36,15 @@
               <ion-icon name="settings"></ion-icon>
               <ion-label class="label_menu">Mon Compte</ion-label>
             </ion-item>
-            <ion-item  class="comp-item" >
+            <ion-item  class="comp-item" (click)="ReferToWebApp()">
               <ion-icon name="body"></ion-icon>
               <ion-label class="label_menu">Confidentialité</ion-label>
             </ion-item>
-            <ion-item  class="comp-item" >
+            <ion-item  class="comp-item" (click)="ReferToWebApp()">
               <ion-icon name="at-circle"></ion-icon>
               <ion-label class="label_menu">Nous Contacter</ion-label>
             </ion-item>
-            <ion-item  class="comp-item" >
+            <ion-item  class="comp-item" (click)="closeApp()">
               <ion-icon name="power"></ion-icon>
               <ion-label class="label_menu">Quitter</ion-label>
             </ion-item>

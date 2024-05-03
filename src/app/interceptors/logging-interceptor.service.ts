@@ -12,7 +12,7 @@ export class LoggingInterceptorService implements HttpInterceptor  {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(req).pipe(
       tap((event: HttpEvent<any>) => {
-        console.log('Incoming HTTP response', event);
+        // console.log('Incoming HTTP response', event);
       })
     );
   }

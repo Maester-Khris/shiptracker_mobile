@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { authGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -13,27 +14,25 @@ const routes: Routes = [
   },
   {
     path: 'shippings/home',
-    loadChildren: () => import('./pages/shippings/home/home.module').then( m => m.HomePageModule)
+    loadChildren: () => import('./pages/shippings/home/home.module').then( m => m.HomePageModule),
+    canActivate: [authGuard]
   },
   {
     path: 'shippings/scan',
-    loadChildren: () => import('./pages/shippings/scan/scan.module').then( m => m.ScanPageModule)
+    loadChildren: () => import('./pages/shippings/scan/scan.module').then( m => m.ScanPageModule),
+    canActivate: [authGuard]
   },
   {
     path: 'shippings/details',
-    loadChildren: () => import('./pages/shippings/details/details.module').then( m => m.DetailsPageModule)
+    loadChildren: () => import('./pages/shippings/details/details.module').then( m => m.DetailsPageModule),
+    canActivate: [authGuard]
   },
   {
     path: 'parametre',
-    loadChildren: () => import('./pages/parametre/parametre.module').then( m => m.ParametrePageModule)
+    loadChildren: () => import('./pages/parametre/parametre.module').then( m => m.ParametrePageModule),
+    canActivate: [authGuard]
   }
 ];
-
-
-// {
-//   path: '',
-//   loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
-// },
 
 
 @NgModule({

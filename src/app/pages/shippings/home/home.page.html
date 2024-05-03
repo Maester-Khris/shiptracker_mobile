@@ -13,43 +13,42 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
- <div class="wrapper">
-  <ion-list lines="none">
-    <ion-item button routerLink="/shippings/details">
-      <ion-card>
-        <div class="status-icon" >
-          <img src="/assets/images/delivery.gif" alt="" style="height: 40px; width: 40px;transform:translateY(-6px);">
-        </div>
-        <ion-card-header>
-          <ion-card-title><strong>Ship00123454323234</strong></ion-card-title>
-        </ion-card-header>
-        <ion-card-content>
-          <p>02 colis (75 x 25 x 30)</p>
-          <p>12/04/2022 12h30</p>
-        </ion-card-content>
-      </ion-card>
-    </ion-item>
 
-    <ion-item button routerLink="/shippings/details">
-      <ion-card>
-        <div class="status-icon">
-          <img src="/assets/images/delivered.gif" alt="" style="height: 30px; width: 30px;">
-        </div>
-        <ion-card-header>
-          <ion-card-title><strong>Ship00123454323234</strong></ion-card-title>
-        </ion-card-header>
-        <ion-card-content>
-          <p>02 colis (75 x 25 x 30)</p>
-          <p>12/04/2022 12h30</p>
-        </ion-card-content>
-      </ion-card>
-    </ion-item>
-  </ion-list>
+  <!-- No Internet Component -->
+  <div *ngIf="isNetworkWorking==false; else shippingList" class="vertical-center" style="width: 100%; height: 100%;font-family: 'Quicksand', sans-serif;">
+    <img src="/assets/images/offline.png" alt="" style="width:150px;height:150px;margin-bottom:20px;">
+    <h3 style="font-size: 17px;"><strong>Une Erreur est survenu</strong></h3>
+    <p style="text-align: center; font-size: 16px; margin-top: 0px;">Vérifiez votre connexion internet et vos paramètres reseaux.</p>
+  </div>  
+  
+  <!-- Shipping List Component -->
+  <ng-template #shippingList>
+    <div class="wrapper">
+      <ion-list lines="none">
+        <ion-item button *ngFor="let ship of shippings" routerLink="/shippings/details" [queryParams]="{ship_reference:ship.reference_exp}">
+          <ion-card>
+            <div class="status-icon" >
+              <img *ngIf="ship.status_exp != 'DELIVERED'; else onGoing " src="/assets/images/delivery.gif" alt="" style="height: 40px; width: 40px;transform:translateY(-6px);">
+              <ng-template #onGoing>
+                <img src="/assets/images/delivered.gif" alt="" style="height: 30px; width: 30px;">
+              </ng-template>
+            </div>
+            <ion-card-header>
+              <ion-card-title><strong>{{ship.reference_exp}}</strong></ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              <p>{{ship.packages.length}} colis (75 x 25 x {{ship.packages[0].weight}})</p>
+              <p>{{ship.departure_date | date :  "dd.MM.y à H\'h\'mm\'min\'"}}</p>
+            </ion-card-content>
+          </ion-card>
+        </ion-item>
+      </ion-list>
+      <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+        <ion-fab-button class="main-fab" (click)="scan()">
+          <ion-icon name="scan-outline" color="#F5F5DC" style="font-size: 25px; font-weight: bolder;"></ion-icon>
+        </ion-fab-button>
+      </ion-fab>
+   </div> 
+  </ng-template>
 
-  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
-    <ion-fab-button class="main-fab" (click)="scan()">
-      <ion-icon name="scan-outline" color="#F5F5DC" style="font-size: 25px; font-weight: bolder;"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
- </div>
 </ion-content>

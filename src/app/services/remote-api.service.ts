@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { User } from '../model';
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +23,14 @@ export class RemoteApiService {
   constructor(private http:HttpClient) { }
 
   connectToRemote(dataToPost:any){
-    return this.http.post<any>(`${this.BASE_API}/login`,dataToPost, {headers: this.httpHeaderNoAuth.headers});
+    return this.http.post<any>(`${this.BASE_API}/login`, dataToPost, {headers: this.httpHeaderNoAuth.headers, observe: 'response' });
+  }
+
+  getMyShipping(dataToPost:any){
+    return this.http.post<any>(`${this.BASE_API}/user/shippings`, dataToPost, {headers: this.httpHeaderAuth.headers, observe: 'response' });
+  }
+
+  getShippingDetails(dataToPost:any){
+    return this.http.post<any>(`${this.BASE_API}/user/shippings/detail`, dataToPost, {headers: this.httpHeaderAuth.headers, observe: 'response' });
   }
 }
