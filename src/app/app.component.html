@@ -1,6 +1,6 @@
 <ion-app>
   <ion-split-pane contentId="main-content">
-    <ion-menu contentId="main-content" >
+    <ion-menu contentId="main-content" (ionWillOpen)="onMenuWillOpen()" >
       <div class="header-menu full-center">
         <div class="user-info-logout with-border" >
           <div class="user-info justify-start p-relative">

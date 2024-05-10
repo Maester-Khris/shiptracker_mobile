@@ -7,7 +7,8 @@ import { User } from '../model';
 })
 export class RemoteApiService {
 
-  BASE_API = "http://127.0.0.1:8000/api";
+  // BASE_API = "http://127.0.0.1:8000/api";
+  BASE_API = "https://olbizgo.com/api";
   httpHeaderAuth = {
     headers: new HttpHeaders({
       'Content-type': 'application/json'

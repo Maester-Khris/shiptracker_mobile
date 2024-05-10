@@ -14,6 +14,7 @@ ion-card{
     --background: #C0D6E8;
     font-family: 'Quicksand', sans-serif;
     font-size: 17px;
+    overflow-y: scroll;
 }
 .info-section{
     height: 38%;
@@ -46,4 +47,17 @@ img + h4{
 
 .loader{
     --_g: no-repeat radial-gradient(circle closest-side, #5598ff 90%, #0000);
+}
+::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: white;
+    border-radius: 6px;
 }

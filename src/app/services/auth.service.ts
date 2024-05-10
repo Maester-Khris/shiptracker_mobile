@@ -17,7 +17,7 @@ export class AuthService {
 
   async login(email:string, pass:string): Promise<string>{
     let deviceid = await this.storage.read('custom_device_id');
-    let data = {email: 'darrel05@example.net', password: 'test users', device: deviceid.value};
+    let data = {email: 'katlynn03@example.com', password: 'test users', device: deviceid.value};
     
     let response:HttpResponse<any> = await firstValueFrom(this.remote.connectToRemote(data)) ;
     if(response.status == 200){

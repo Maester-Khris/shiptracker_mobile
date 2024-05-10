@@ -13,11 +13,10 @@ import { MenuController } from '@ionic/angular';
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss'],
 })
-export class AppComponent implements OnInit{
+export class AppComponent{
 
   logged_user:User = {name:"", email:"", telephone:"", api_token:"", created_at:"", updated_at:"", email_verified_at:""};
   parameters:Preference = {email_alert:true, sms_alert:false, payment_method:"OM", payment_option:"Subscription"};
-
 
   constructor(
     private platform: Platform, 
@@ -27,12 +26,15 @@ export class AppComponent implements OnInit{
     this.initializeApp();
   }
 
-  async ngOnInit() {
+  async onMenuWillOpen() {
+    console.log('page entered');
     let data = await this.storage.read("logged_user");
     let user:User = data.value ? JSON.parse(data.value) : {};
     this.logged_user = this.shallow(user);
-    localStorage.setItem("apiToken","25|H0ZUosv0UkQu1tTUbl6USIrNVEMivdecgfLCaTOw");
+    console.log(this.logged_user);
   }
+
+
   /** ========== Actions on Fist launch ===================
    * install google code bar plugin
    * store devide identifier in storage
