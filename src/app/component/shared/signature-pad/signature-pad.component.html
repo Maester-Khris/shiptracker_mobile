@@ -1,0 +1,14 @@
+<canvas
+  #canvas
+  (touchstart)="startDrawing($event)"
+  (touchmove)="moved($event)"
+  width="300"
+  height="200"
+  style="width:100%;height:70%;border:1px solid black;"
+></canvas>
+
+<hr>
+<div class="justify-center">
+  <ion-button (click)="clearPad()">Supprimer</ion-button>
+  <ion-button (click)="savePad()">Soumettre</ion-button>
+</div>

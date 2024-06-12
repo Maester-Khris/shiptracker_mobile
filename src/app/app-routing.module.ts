@@ -5,7 +5,7 @@ import { authGuard } from './guards/auth.guard';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'login',
+    redirectTo: 'shippings/home',
     pathMatch: 'full'
   },
   {
@@ -18,8 +18,8 @@ const routes: Routes = [
     canActivate: [authGuard]
   },
   {
-    path: 'shippings/scan',
-    loadChildren: () => import('./pages/shippings/scan/scan.module').then( m => m.ScanPageModule),
+    path: 'shippings/list',
+    loadChildren: () => import('./pages/shippings/list/list.module').then( m => m.ListPageModule),
     canActivate: [authGuard]
   },
   {
@@ -28,9 +28,37 @@ const routes: Routes = [
     canActivate: [authGuard]
   },
   {
+    path: 'shippings/add-one',
+    loadChildren: () => import('./pages/shippings/add-one/add-one.module').then( m => m.AddOnePageModule),
+    canActivate: [authGuard]
+  },
+  {
+    path: 'shipping/update/scan',
+    loadChildren: () => import('./pages/shippingsUpdate/scan/scan.module').then( m => m.ScanPageModule),
+    canActivate: [authGuard]
+  },
+  {
+    path: 'shipping/update/operation',
+    loadChildren: () => import('./pages/shippingsUpdate/operation/operation.module').then( m => m.OperationPageModule)
+  },
+  {
+    path: 'shipping/update/modifiy-one',
+    loadChildren: () => import('./pages/shippingsUpdate/update-type/update-type.module').then( m => m.UpdateTypePageModule),
+    canActivate: [authGuard]
+  },
+  {
     path: 'parametre',
     loadChildren: () => import('./pages/parametre/parametre.module').then( m => m.ParametrePageModule),
     canActivate: [authGuard]
+  },
+  {
+    path: 'statistics',
+    loadChildren: () => import('./pages/statistics/statistics.module').then( m => m.StatisticsPageModule),
+    canActivate: [authGuard]
+  },
+  {
+    path: 'test',
+    loadChildren: () => import('./pages/test/test.module').then( m => m.TestPageModule)
   }
 ];
 

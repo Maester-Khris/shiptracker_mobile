@@ -1,0 +1,37 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Test</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  
+  <div class="wrapper" style="height: 100%; width: 100%; padding: 30px;">
+    <!-- <div class="top-section" style="height: 30%;">
+      <ion-button (click)="addNewToGallery()">Take a photo</ion-button>
+    </div>
+    <div class="bottom-section" style="height: 60%;margin-top: 10px;border-top: 1px solid black;">
+      <ion-grid>
+        <ion-row *ngIf="photos.length > 0">
+          <ion-col size="6" *ngFor="let photo of photos; index as position">
+            <ion-img [src]="photo.webviewPath"></ion-img>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div> -->
+
+    <!-- <signature-pad 
+      [options]="signaturePadOptions" 
+      (onBeginEvent)="drawStart()" 
+      (onEndEvent)="drawComplete()">           (click)="addNewToGallery()"
+    </signature-pad> -->
+
+    <!-- <app-signature-pad (dataEmitted)="onDataReceived($event)"></app-signature-pad> -->
+
+    <ion-button (click)="test()">Take a photo</ion-button>
+
+
+  </div>
+
+
+</ion-content>

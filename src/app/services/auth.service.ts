@@ -17,10 +17,10 @@ export class AuthService {
 
   async login(email:string, pass:string): Promise<string>{
     let deviceid = await this.storage.read('custom_device_id');
-    let data = {email: 'katlynn03@example.com', password: 'test users', device: deviceid.value};
+    let data = {email: email, password: pass, device: deviceid.value};
     
     let response:HttpResponse<any> = await firstValueFrom(this.remote.connectToRemote(data)) ;
-    if(response.status == 200){
+    if(response.status == 200 && !response.body.message){
       let user:User = JSON.parse(response.body.data) as User;
       user.api_token = response.body.apiToken;
       console.log(user);
@@ -28,8 +28,11 @@ export class AuthService {
       localStorage.setItem("apiToken",response.body.apiToken);
       localStorage.setItem('isUserAuth','true');
       // this.isuserAuthenticaed = true;
+      return 'Login Succeed';
+    }else{
+      return response.body.message;
     }
-    return response.status == 200 ? 'Login Succeed' : 'Error When attempted login';
+    
   }
 
   logout(){

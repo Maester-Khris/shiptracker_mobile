@@ -8,44 +8,46 @@
         <ion-icon slot="icon-only" name="refresh-outline" color="black" style="font-size: 33px;"></ion-icon>
       </ion-button>
     </ion-buttons>
-    <ion-title>Shipping Details</ion-title>
+    <ion-title>Details Expédition</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-
-  <!-- No Internet Component -->
-  <div *ngIf="isNetworkWorking==false; else shippingDetail" class="vertical-center" style="width: 100%; height: 100%;font-family: 'Quicksand', sans-serif;">
-    <img src="/assets/images/offline.png" alt="" style="width:150px;height:150px;margin-bottom:20px;">
-    <h3 style="font-size: 17px;"><strong>Une Erreur est survenu</strong></h3>
-    <p style="text-align: center; font-size: 16px; margin-top: 0px;">Vérifiez votre connexion internet et vos paramètres reseaux.</p>
-  </div>  
-
+  <app-no-internet *ngIf="isNetworkWorking==false; else shippingDetail"></app-no-internet>
   <ng-template #shippingDetail>
     <div class="wrapper">
       <div class="info-section">
         <ion-card>
           <ion-card-content class="justify-start">
             <img src="/assets/images/package_delivery.png" alt="" style="">
-            <h4><strong>Mr/Mme. {{shipping.sender}}</strong></h4>
+            <h4><strong>Mr/Mme. {{clientDetails.sender_name}}, {{clientDetails.sender_phone}}</strong></h4>
           </ion-card-content>
         </ion-card>
         <ion-card>
           <ion-card-content class="justify-start">
             <img src="/assets/images/package_delivery.png" alt="" style="">
-            <h4><strong>Mr/Mme. {{shipping.receiver}}</strong></h4>
+            <h4><strong>Mr/Mme. {{clientDetails.receiver_name}}, {{clientDetails.receiver_phone}}</strong></h4>
           </ion-card-content>
         </ion-card>
         <ion-card>
           <ion-card-content class="justify-start">
             <img src="/assets/images/package.png" alt="" style="">
-            <h4><strong>({{shipping.package_size}}) - 25 x 75 x {{shipping?.packages?.[0]?.weight}}</strong></h4>
+            <h4><strong>Nombre Colis: ({{packageCnt}})</strong></h4>
           </ion-card-content>
         </ion-card>
         <ion-card>
           <ion-card-content class="justify-start">
             <img src="/assets/images/package_time.png" alt="" style="">
-            <h4><strong>{{shipping.departure_date | date :  "dd.MM.y à H\'h\'mm\'min\'"}}</strong></h4>
+            <h4 *ngIf="isShipDelivered == false; else trajetDate">
+              <strong *ngIf="ship_departure!=null; else onHold">Départ le: {{ship_departure | date :  "dd.MM.y à H\'h \'mm\'min\'"}}</strong>
+              <ng-template #onHold><strong >Expédition en attente de départ</strong></ng-template>
+            </h4>
+            <ng-template #trajetDate>
+              <h4><strong>
+                Transit éffectué du : {{ship_departure | date :  "dd.MM.y"}} 
+                au {{ship_arrival | date :  "dd.MM.y"}} 
+              </strong></h4>
+            </ng-template>
           </ion-card-content>
         </ion-card>
       </div>
@@ -54,45 +56,61 @@
           <ion-card-content>
             <div style="margin-bottom: 15px; width: 100%; display: flex; justify-content: space-between;">
               <h3 style="margin-bottom: 15px;font-size: 18px; font-weight: bold;">Trajet de l'expedition</h3>
-              <div *ngIf="shipping.status_exp != 'DELIVERED'; else onGoing" style="width: 25px; height: 15px; border-radius: 4px; display: flex; justify-content: center; align-items: center;">
-                <div class="loader"></div>
+              <div *ngIf="isShipDelivered == true; else onGoing" style="width:25px;height:15px;border-radius:4px;">
+                <ion-icon slot="icon-only" name="checkmark-done-circle" style="color: #FCA311;font-size: 34px;transform: translateY(-7px);"></ion-icon> 
               </div>
               <ng-template #onGoing>
-                <div>
-                  <ion-icon slot="icon-only" name="checkmark-done-circle" style="color: #FCA311;font-size: 34px;transform: translateY(-7px);"></ion-icon>
+                <div class="justify-center" style="align-items:center;width:25px;height:15px;border-radius:4px;">
+                  <div class="justify-center" *ngIf="ship_status=='ORDERED' || ship_status=='DEPOSITED'; else onWay" style="align-items: center;margin-top: 20px;margin-right: 20px;">
+                    <span style="transform: translateY(-8px);font-size: 16px;">Statut: </span>
+                    <ion-icon  slot="icon-only" name="hourglass-outline" style="font-size: 34px;transform: translateY(-7px);"></ion-icon>
+                  </div>
+                  <ng-template #onWay>
+                    <div class="loader"></div>
+                  </ng-template>
                 </div>
               </ng-template>
             </div>
+
             <div style="display: flex; flex-direction:column; justify-content: center; align-items: center;">
-              
-              <div *ngFor="let points of shipping.route_points; let counter=index">
-                
-                <div style="display: flex; flex-direction: row; align-items: center; width: 310px;">
-                  <div style="width: 50px; height: 50px;margin-right: 20px;">
-                    <div class="full-center" style="height: 48px; width: 48px; background-color: white; border-radius: 24px; border: 1px solid black;">
-                      <div style="height: 40px; width: 40px; background-color: #3dc2ff; border-radius: 20px; border: 1px solid #F5F5DC;">
-                        <ion-icon *ngIf="points.point_id < shipping.actual_point_id; else onAir" name="checkmark-outline" style="color:#FCA311; font-size: 30px;"></ion-icon>
-                        <ng-template #onAir>
-                          <ion-icon name="airplane-outline" style="color:white; font-size: 30px;"></ion-icon>
+              <div class="vertical-center" *ngIf="ship_status=='ORDERED' || ship_status=='DEPOSITED'; else launched" style="height: 100%; padding: 0 15px;">
+                <p style="text-align: center;font-size: 17px;margin-top: 10px;">
+                  Aucun trajet engagé pour le moment. <br> Veuillez marquer le statut de l'expedition à "<strong>Expédition en cours</strong>" dans le menu mise à jour.
+                </p>
+              </div>
+              <ng-template #launched>
+                <div *ngFor="let step of steps; let counter=index">
+                  <div style="display: flex; flex-direction: row; align-items: center; width: 310px;">
+                    <div style="width: 50px; height: 50px;margin-right: 20px;">
+                      <div class="full-center" style="height: 48px; width: 48px; background-color: white; border-radius: 24px; border: 1px solid black;">
+                        <div *ngIf="isShipDelivered == false; else doneIcons" style="height: 40px; width: 40px; background-color: #3dc2ff; border-radius: 20px; border: 1px solid #F5F5DC;">
+                          <ion-icon *ngIf="step.step_running_flag == true; else NotonAir" name="airplane-outline" style="color:white; font-size: 30px;"></ion-icon>
+                          <ng-template #NotonAir>
+                            <ion-icon *ngIf="(counter+1) > ship_running_step_id; else yetPassed" name="hourglass-outline" style="color:white; font-size: 30px;"></ion-icon>
+                            <ng-template #yetPassed>
+                              <ion-icon name="checkmark-outline" style="color:#FCA311; font-size: 30px;"></ion-icon>
+                            </ng-template>
+                          </ng-template>
+                        </div>
+                        <ng-template #doneIcons>
+                          <ion-icon name="checkmark-outline" style="color:#FCA311; font-size: 30px;"></ion-icon>
                         </ng-template>
                       </div>
                     </div>
+                    <div>
+                      <h3 style="margin: 0px; font-size: 17px;">{{step.step_name}}</h3>
+                      <small *ngIf="step.step_launched_date" style="font-size: 15px;padding-left: 3px;">Commencé le {{step.step_launched_date}}</small>
+                    </div>
                   </div>
-                  <div>
-                    <h3 style="margin: 0px; font-size: 17px;">{{points.point_name}}</h3>
+                  <div *ngIf="(counter+1) < steps.length" style="display: flex; flex-direction: row; width: 310px; z-index: 10;">
+                    <div style="width: 48px; display: flex; justify-content: center; align-items: center;margin-right: 20px;">
+                      <div style="height: 60px;border: 1px dotted black; "></div>
+                    </div>
+                    <div style="display: flex;flex-direction: column;justify-content: center;align-items: start;">
+                    </div>
                   </div>
                 </div>
-
-                
-                <div *ngIf="counter < (shipping.route_size -1) "   style="display: flex; flex-direction: row; width: 310px; z-index: 10;">
-                  <div style="width: 48px; display: flex; justify-content: center; align-items: center;margin-right: 20px;">
-                    <div style="height: 60px;border: 1px dotted black; "></div>
-                  </div>
-                  <div style="display: flex;flex-direction: column;justify-content: center;">
-                  </div>
-                </div>
-              </div>
-              
+              </ng-template>
             </div>
           </ion-card-content>
         </ion-card>

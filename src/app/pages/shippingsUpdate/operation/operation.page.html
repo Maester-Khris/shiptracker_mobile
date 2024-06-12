@@ -1,0 +1,29 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Choisissez une opération</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="wrapper">
+    <ion-list lines="none">
+      <ion-item button routerLink="/shipping/update/modifiy-one" [queryParams]="{reference:ship_reference, updateType:'update-step'}">
+        <ion-card>
+          <ion-card-content>
+            <p>1. Mettre à jour le voyage</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-item>
+      <ion-item button routerLink="/shipping/update/modifiy-one" [queryParams]="{reference:ship_reference, updateType:'update-status'}">
+        <ion-card>
+          <ion-card-content>
+            <p>2. Mettre à jour le statut de l'expedition</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-item>
+    </ion-list>
+ </div>
+</ion-content>

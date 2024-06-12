@@ -1,0 +1,122 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Mise à jour de l'expedition</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="wrapper p-relative">
+    <div class="head-title text-center" style="margin-bottom:30px;padding-top: 40px;">
+      <ion-text>
+        <h2><strong>Instructions</strong></h2>
+        <p style="margin: 0 8px;">Modifiez les informations <br> ensuite tapez sur le bouton "Mettre à jour" </p>
+      </ion-text>
+    </div>
+
+    <!-- Mise à jour 1 -->
+    <div *ngIf="operation_type=='update-step'; else updateStatus">
+      <div style="width: 100%; padding: 0px 20px;">
+        <ion-item>
+          <ion-label>Code expedition</ion-label>
+          <ion-note slot="end">{{ship_reference}}</ion-note>
+        </ion-item>
+        <ion-item id="open-modal2">
+          <ion-label>L'étape du trajet</ion-label>
+          <ion-note slot="end">{{ship_running_stepname}}</ion-note>
+        </ion-item>
+      </div>
+      <div style="width: 100%; padding: 0px 20px; position: absolute;bottom: 35px;">
+        <ion-button expand="block" (click)="updateStep()" [disabled]="isprocessingstep">
+          <ion-spinner *ngIf="isprocessingstep" name="lines-sharp"  style="margin-right: 10px;"></ion-spinner>
+          <span>Mettre à jour</span>
+        </ion-button>
+      </div>
+    </div>
+
+    <!-- Mise à jour 2 --> 
+    <ng-template #updateStatus>
+      <div style="width: 100%; padding: 0px 20px;">
+        <ion-item>
+          <ion-label>Code expédition</ion-label>
+          <ion-note slot="end">{{ship_reference}}</ion-note>
+        </ion-item>
+        <ion-item id="open-modal3">
+          <ion-label>Changez le statut</ion-label>
+          <ion-note slot="end" style="max-width:150px;text-align:right;">{{ship_status}}</ion-note>
+        </ion-item>
+      </div>
+      <div style="width: 100%; padding: 0px 20px; position: absolute;bottom: 35px;">
+        <ion-button expand="block" (click)="updateStatusShip()" [disabled]="isprocessingstatus">
+          <ion-spinner *ngIf="isprocessingstatus" name="lines-sharp"  style="margin-right: 10px;"></ion-spinner>
+          <span>Mettre à jour</span>
+        </ion-button>
+      </div>
+    </ng-template>
+  </div>
+
+
+  <!-- Model Trajet -->
+  <ion-modal #modal2 trigger="open-modal2" [initialBreakpoint]="0.34">
+    <ng-template>
+      <ion-content>
+        <ion-list lines="full" style="height:100%;width:100%;">
+          <ion-item *ngFor="let step of ship_steps" (click)="setShippingStep(modal2, step.id)">
+            <ion-icon slot="start" [name]="ship_running_stepid == step.id ? 'location' : 'location-outline'" [style.color]="ship_running_stepid == step.id ? '#0077B6' : 'black'" ></ion-icon>
+            <ion-label>{{step.name}}</ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+
+  <!-- Model Statut -->
+  <ion-modal #modal3 trigger="open-modal3" [initialBreakpoint]="0.42">
+    <ng-template>
+      <ion-content>
+        <ion-list lines="full" style="height:100%!important;width:100%;overflow-y:scroll!important;">
+          <ion-item *ngFor="let status of statuses" (click)="setShippingStatus(modal3, status)">
+            <ion-icon slot="start" [name]="ship_status == status ? 'flag' : 'flag-outline'" [style.color]="ship_status == status ? '#0077B6' : 'black'"></ion-icon>
+            <ion-label>{{status}}</ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+
+  <!-- Model Fin expedition -->
+  <ion-modal id="endship" #modalFin>
+    <ng-template>
+      <div style="height: 100%;">
+        <h1>Fin de l'expédition</h1>
+        <div class="vertical-center" style="height:80%;justify-content:space-between;">
+          <app-signature-pad *ngIf="nic_taken; else takePhoto" (dataEmitted)="onSignatureSubmit($event)"></app-signature-pad>
+          <ng-template #takePhoto>
+            <ion-text style="text-align: center;">Enregistrer la carte d'identité du destinataire</ion-text>
+            <ion-button (click)="saveDestPicture()">Prendre la photo</ion-button>
+          </ng-template>
+        </div>
+      </div>
+    </ng-template>
+  </ion-modal>
+
+</ion-content>
+
+
+<!-- No More used: Search shipping modal -->
+<!-- <ion-modal #modal1 trigger="open-modal1" [initialBreakpoint]="0.50">
+  <ng-template>
+    <ion-content>
+      <ion-searchbar placeholder="Recherche en utilisant le code"></ion-searchbar>
+      <ion-list lines="full" style="height:100%;width:100%;overflow-y:scroll;">
+        <ion-item *ngFor="let ship of shippings;let counter=index" (click)="setShipping(modal1)">
+          <ion-icon slot="start" [name]="counter == 2 ? 'folder-open' : 'folder-open-outline' "
+            [style.color]="counter == 2 ? '#0077B6' : 'black'"></ion-icon>
+          <ion-label>{{ship}}</ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-content>
+  </ng-template>
+</ion-modal> -->

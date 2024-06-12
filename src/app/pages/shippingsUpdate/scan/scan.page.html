@@ -1,0 +1,28 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Scanner le code de l'expedition</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  
+  <div class="wrapper p-relative">
+    <div class="head-title text-center" style="margin-bottom:30px;padding-top: 40px;">
+      <ion-text>
+        <h2><strong>Instructions</strong></h2>
+        <p style="margin: 0 8px;">Tapez sur le bouton dans le <br> coin inférieur droit pour scannr le code de l'expedition </p>
+      </ion-text>
+    </div>
+
+    <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+      <ion-fab-button class="main-fab" (click)="scan()">
+        <ion-icon name="scan-outline" color="#F5F5DC" style="font-size: 25px; font-weight: bolder;"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+  </div>
+
+
+</ion-content>

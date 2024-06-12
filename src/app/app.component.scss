@@ -49,11 +49,17 @@ ion-menu{
 .user-info h3{
     margin-top: 0px;
     margin-bottom: 0px;
+    
+    text-transform: capitalize;
+}
+.user-info h3, .user-info span{
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     max-width: 200px;
-    text-transform: capitalize;
+}
+.user-info span{
+    display: inline-block;
 }
 .user-info ion-text{
     color:white;

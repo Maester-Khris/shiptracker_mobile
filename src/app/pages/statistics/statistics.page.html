@@ -1,0 +1,79 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Statistique des envois</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card style="--background: #A8DADC;">
+    <ion-card-header style="padding:10px 16px;">
+      <ion-card-title><strong>Statistique</strong></ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <div class="shipping-expends p-relative">
+        <div style="width: 100%; margin: 0 auto; text-align: center;">
+          <div class="p-absolute" style=" top:14px;left:18%;">
+            <ion-icon name="cash-outline" style="color:#FCA311;display: block;font-size: 20px;"></ion-icon>
+            <span >XOF</span>
+          </div>
+        
+          <h3>2450</h3>
+          <ion-text>
+            <p>Total gains sur les expéditions</p>
+          </ion-text>
+        </div>
+        <!-- <div class="justify-center shipping-expends-numbers" style="width: 100%;justify-content: space-between;">
+          <div style="width: 50%;text-align: center;">
+            <span>23</span> <br>
+            <span>Expeditions</span>
+          </div>
+          <div style="width: 50%;text-align: center;">
+            <span>50</span><br>
+            <span>Colis Envoyés</span>
+          </div>
+        </div> -->
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <div class="wrapper" style="margin: 0px 10px; margin-top: 20px;">
+    <h3><strong>Chiffres</strong></h3>
+    <ion-list>
+      <ion-item>
+        <ion-label>Nombre de clients</ion-label>
+        <ion-note slot="end">200</ion-note>
+      </ion-item>
+      <ion-item>
+        <ion-label>Nombre d'expeditions</ion-label>
+        <ion-note slot="end">200</ion-note>
+      </ion-item>
+      <ion-item>
+        <ion-label>Nombre de colis envoyés</ion-label>
+        <ion-note slot="end">200</ion-note>
+      </ion-item>
+      <ion-item>
+        <ion-label>Temps de transit moyen</ion-label>
+        <ion-note slot="end">5 jours</ion-note>
+      </ion-item>
+    </ion-list>
+
+    <h3><strong>Suivi des activités</strong></h3>
+    <ion-list>
+      <ion-item>
+        <ion-label>Expeditions en cours</ion-label>
+        <ion-note slot="end">14</ion-note>
+      </ion-item>
+      <ion-item>
+        <ion-label>Expeditions en attente <small>colis entreposés</small></ion-label>
+        <ion-note slot="end">14</ion-note>
+      </ion-item>
+      <ion-item>
+        <ion-label>Nombre de Réclamations</ion-label>
+        <ion-note slot="end">2</ion-note>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>

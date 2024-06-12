@@ -1,0 +1,45 @@
+.wrapper {
+    width: 100%;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+form, .form-item, .form-item ion-item{
+    width: 100%;
+}
+.form-item{
+    margin-bottom: 10px;
+}
+ion-item{
+    --border-color: white;
+    border: 1px solid #eee;
+}
+ion-input{
+    padding-top: 6px!important;
+    padding-bottom: 6px!important;
+    font-size: 17px;
+    
+}
+.buttons ion-button{
+    --padding-top: 15px;
+    --padding-bottom: 15px;
+    font-size: 16px;
+    font-weight: bold;
+}
+.head-title{
+    margin: 30px 0px;
+    margin-bottom: 35px;
+    text-align: center;
+}
+ion-input,
+ion-text,
+ion-button {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+}
+
+::-webkit-scrollbar {
+    background-color: transparent!important;
+    width: 0px!important;
+}
+

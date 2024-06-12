@@ -1,0 +1,19 @@
+ion-list{
+    height: 100%;
+    padding-top: 20px;
+    background-color: transparent!important;
+}
+ion-item{
+    --background: transparent;
+}
+ion-item, ion-card{
+    width: 100%;
+}
+ion-card{
+    --background: #C0D6E8;
+    margin: 0;
+    position: relative;
+    margin-bottom: 10px;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 17px;
+}

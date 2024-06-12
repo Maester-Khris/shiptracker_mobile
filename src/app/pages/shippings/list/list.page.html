@@ -1,0 +1,42 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Liste des expéditions</ion-title>
+    <ion-buttons slot="end" >
+      <!-- style="color:#0077B6" -->
+      <ion-button>
+        <ion-icon slot="icon-only" name="swap-vertical-outline" color="black"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <app-no-internet *ngIf="isNetworkWorking==false; else shippingList"></app-no-internet>
+  <ng-template #shippingList>
+    <div class="wrapper">
+      <ion-list lines="none">
+        <ion-item button *ngFor="let ship of shippings" routerLink="/shippings/details" [queryParams]="{ship_reference:ship.reference_exp}">
+          <ion-card>
+            <div class="status-icon" >
+              <img *ngIf="ship.is_finished == false; else onGoing " src="/assets/images/delivery.gif" alt="" style="height: 40px; width: 40px;transform:translateY(-6px);">
+              <ng-template #onGoing>
+                <img src="/assets/images/delivered.gif" alt="" style="height: 30px; width: 30px;">
+              </ng-template>
+            </div>
+            <ion-card-header>
+              <ion-card-title><strong> Exp N° {{ship.reference_exp}}</strong></ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              <p>Nombre colis: ({{ship.packages.length}})</p>
+              <p *ngIf="ship.departure_date != null; else onHold">Depart le: {{ship.departure_date | date :  "dd.MM.y à H\'h \'mm\'min\'"}}</p>
+              <ng-template #onHold><p>Depart en attente ...</p></ng-template>
+            </ion-card-content>
+          </ion-card>
+        </ion-item>
+      </ion-list>
+   </div> 
+  </ng-template>  
+</ion-content>

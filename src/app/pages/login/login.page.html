@@ -14,7 +14,10 @@
       <ion-item class="with-border">
         <ion-input type="password" label="Mot de passe" labelPlacement="floating" placeholder="Saisissze votre mot de passe" [(ngModel)]="pass"></ion-input>
       </ion-item>
-      <ion-button expand="block" (click)="connect()">Connexion </ion-button> 
+      <ion-button #connectBtn expand="block" (click)="connect()" [disabled]="isprocessing">
+        <ion-spinner *ngIf="isprocessing" name="lines-sharp"  style="margin-right: 10px;"></ion-spinner>
+        <span>Connexion</span> 
+      </ion-button> 
     </div>
   </div>
 </ion-content>

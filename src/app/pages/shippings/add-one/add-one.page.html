@@ -1,0 +1,93 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Nouvelle expedition</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="wrapper" >
+
+    <div class="head-title">
+      <ion-text>
+        <h2><strong>Créer une expedition</strong></h2>
+        <p style="margin: 0 8px;">Renseigner l'expediteur, le destinataire et les colis</p>
+      </ion-text>
+    </div>
+    
+
+    <form action="" class="">
+      
+      <div #stepOne class="start-form stepone">
+        <h3>Détails personnels</h3>
+        <div class="form-item justify-start" style="align-items: center;">
+          <ion-icon name="person-outline" slot="start" style="font-size: 30px; margin-right: 10px;"></ion-icon>
+          <ion-item style="border-radius: 8px; ">
+            <ion-input name="expname" id="open-modal-location" type="text" [clearInput]="true" placeholder="Nom de l'expediteur" required [(ngModel)]="newship.sender"></ion-input>
+          </ion-item>
+        </div>
+        <div class="form-item justify-start" style="align-items: center;">
+          <ion-icon name="call-outline" slot="start" style="font-size: 30px; margin-right: 10px;"></ion-icon>
+          <ion-item style="border-radius: 8px;">
+            <ion-input name="expntel" id="open-modal-location" type="tel" [clearInput]="true" placeholder="Téléphone de l'expediteur" required [(ngModel)]="newship.sender_telephone"></ion-input>
+          </ion-item>
+        </div>
+        <div class="form-item justify-start" style="align-items: center;">
+          <ion-icon name="person-outline" slot="start" style="font-size: 30px; margin-right: 10px;"></ion-icon>
+          <ion-item style="border-radius: 8px;">
+            <ion-input name="destiname" id="open-modal-location" type="text" [clearInput]="true" Placeholder="Nom du destinataire" required [(ngModel)]="newship.receiver"></ion-input>
+          </ion-item>
+        </div>
+        <div class="form-item justify-start" style="align-items: center;">
+          <ion-icon name="call-outline" slot="start" style="font-size: 30px; margin-right: 10px;"></ion-icon>
+          <ion-item style="border-radius: 8px;">
+            <ion-input name="destitel" id="open-modal-location" type="tel" [clearInput]="true" placeholder="Téléphone du destinataire" required [(ngModel)]="newship.receiver_telephone"></ion-input>
+          </ion-item>
+        </div>
+        <div class="form-item justify-start" style="align-items: center;">
+          <ion-icon name="locate-outline" slot="start" style="font-size: 30px; margin-right: 10px;"></ion-icon>
+          <ion-item style="border-radius: 8px;">
+            <ion-input name="destiaddress" id="open-modal-location" type="text" [clearInput]="true" placeholder="Adresse du destinataire" required [(ngModel)]="newship.receiver_address"></ion-input>
+          </ion-item>
+        </div>
+        <div class="form-item justify-start" style="align-items: center;">
+          <ion-icon name="map-outline" slot="start" style="font-size: 30px; margin-right: 10px;"></ion-icon>
+          <ion-item style="border-radius: 8px;">
+            <ion-input name="delivrtown" id="open-modal-location" type="text" [clearInput]="true" placeholder="Ville de livraison" required [(ngModel)]="newship.delivery_town"></ion-input>
+          </ion-item>
+        </div>
+      </div>
+      
+     
+      <div #stepTwo class="start-form steptwo" style="margin-top: 20px;">
+        <h3>
+          <span style="margin-right: 10px;">Colis</span> 
+          <ion-button (click)="addPackage()" slot="icon-only" style="--background:transparent;--box-shadow:none;--padding-top:0px;--padding-bottom:0px;--padding-start:2px;--padding-end:2px;--ripple-color: gray;transform:translateY(-7px);">
+            <ion-icon name="add-circle-outline" style="color:#0077B6;font-size: 26px;"></ion-icon>
+          </ion-button>
+        </h3>
+        <div class="form-item justify-start" style="align-items: center;">
+          <ion-icon name="cube-outline" slot="start" style="font-size: 30px; margin-right: 10px;"></ion-icon>
+          <ion-item style="border-radius: 8px;">
+            <ion-input #colisName name="colisname" id="open-modal-location" type="text" [clearInput]="true" Placeholder="Nom du colis" required [(ngModel)]="colis.description"></ion-input>
+          </ion-item>
+        </div>
+        <div class="form-item justify-start" style="align-items: center;">
+          <ion-icon name="scale-outline" slot="start" style="font-size: 30px; margin-right: 10px;"></ion-icon>
+          <ion-item style="border-radius: 8px;">
+            <ion-input #colisWeight name="colisweight" id="open-modal-location" type="number" [clearInput]="true" placeholder="Poids du colis" required [(ngModel)]="colis.weight"></ion-input>
+          </ion-item>
+        </div>
+      </div>
+      
+      <div class="buttons " style="margin-top: 30px;margin-bottom: 15px;">
+        <ion-button #addBtn expand="block" (click)="createShip()" style="--background: #FCA311;" [disabled]="isprocessing">
+          <ion-spinner *ngIf="isprocessing" name="lines-sharp"  style="margin-right: 10px;"></ion-spinner>    
+          <span>Terminer</span>    
+        </ion-button>
+      </div>
+    </form>
+  </div>
+</ion-content>

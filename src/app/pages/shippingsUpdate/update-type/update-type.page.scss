@@ -1,0 +1,78 @@
+ion-note {
+    font-size: 15px;
+    margin-left: 5px;
+    transform: translateY(-5px);
+}
+
+.wrapper {
+    height: 100%;
+    width: 100%;
+}
+
+ion-item {
+    --padding-top: 6px;
+    --padding-bottom: 6px;
+}
+
+ion-list ion-icon {
+    margin-right: 15px;
+}
+
+ion-button {
+    --padding-top: 13px;
+    --padding-bottom: 13px;
+    text-transform: inherit;
+    --background: #FCA311;
+}
+
+ion-toolbar,
+ion-button,
+ion-text,
+ion-searchbar,
+ion-label,
+ion-note {
+    font-family: 'Quicksand', sans-serif !important;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+
+ion-modal#endship {
+    --width: 85%;
+    --height: 50%;
+    --border-radius: 6px;
+    --border-bottom-left-radius: 0px!important;
+    --border-bottom-right-radius: 0px!important;
+    // --box-shadow: 0 28px 48px rgba(0, 0, 0, 0.4);
+}
+ion-modal#fin-ship h1 {
+    margin: 20px 20px 10px 20px;
+}
+h1{
+    text-align: center;
+    font-weight: bold;
+}
+ion-text{
+    margin-top:15px;
+    
+}
+ion-text p{
+    padding-left:13px;
+    padding-right:13px;
+    text-align: center;
+}
+.dialog-button{
+    width: 100%;
+    display:flex;
+}
+.dialog-button ion-button{
+    width: 50%;
+    --border-radius:0;
+    height: 40px!important;
+}
+.dialog-button ion-button:first-child{
+    --background: #E71300!important;
+}
+.dialog-button ion-button:last-child{
+    --background: #F1BA48!important;
+}

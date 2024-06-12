@@ -14,7 +14,8 @@ export class UIMessageService {
   async presentToast(boxMessage:string, iconName:string) {
     const toast = await this.toastController.create({ 
       message: boxMessage, 
-      duration: 3000, position: 'bottom',
+      duration: 3000, 
+      position: 'bottom',
       icon: iconName
     });
     toast.onDidDismiss().then(()=>{

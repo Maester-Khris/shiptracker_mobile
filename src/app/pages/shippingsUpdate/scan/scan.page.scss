@@ -1,0 +1,37 @@
+
+
+
+
+.wrapper{
+    height: 100%;
+    width: 100%;
+}
+ion-toolbar,
+ion-button,
+ion-text,
+ion-searchbar,
+ion-label,
+ion-note {
+    font-family: 'Quicksand', sans-serif!important;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+ion-fab-button{
+    margin-bottom: 10px;
+    margin-right: 5px;
+    height: 60px;
+    width: 60px;
+    --background: #FCA311;
+}

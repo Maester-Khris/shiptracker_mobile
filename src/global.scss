@@ -49,7 +49,9 @@
     src: url('/assets/fonts/quicksand.woff2') format('woff2');
 }
 
-
+.text-center{
+    text-align: center;
+}
 
 .with-border{
     border:1px solid black;
@@ -86,8 +88,20 @@
 .p-absolute{
     position: absolute;;
 }
+.d-none{
+    display: none;
+}
 
 // global styles
 ion-content{
     --background: #ECF0F1;
+    --keyboard-offset: 0px !important;
+}
+ion-button{
+    text-transform: capitalize;
+}
+
+::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
 }

@@ -23,3 +23,45 @@ export interface Preference{
     payment_method:string,
     payment_option:string
 }
+
+export enum ShippingStatus {
+    ORDERED = 'Expedition crée',
+    DEPOSITED = 'Paquet(s) arrivé(s) à l\'entrepot',
+    ONWAY = 'Expédition en cours',
+    ARRIVED = 'Paquet(s) arrivé(s) à destination',
+    DELIVERED = 'Fin de l\'expédition',
+}
+
+export function statusEquivalenceV0(status){
+  switch (status) {
+    case 'ORDERED':
+      return ShippingStatus.ORDERED;
+    case 'ONWAY':
+      return ShippingStatus.ONWAY;
+    case 'DEPOSITED':
+      return ShippingStatus.DEPOSITED;
+    case 'ARRIVED':
+      return ShippingStatus.ARRIVED;
+    case 'DELIVERED':
+      return ShippingStatus.DELIVERED;
+    default:
+      return ShippingStatus.ONWAY
+  }
+}
+
+export function statusEquivalenceV1(status) {
+  switch (status) {
+    case ShippingStatus.ONWAY:
+      return 'ONWAY' ;
+    case ShippingStatus.ORDERED:
+      return 'ORDERED' ;
+    case ShippingStatus.DEPOSITED:
+      return 'DEPOSITED';
+    case ShippingStatus.ARRIVED:
+      return 'ARRIVED' ;
+    case ShippingStatus.DELIVERED:
+      return 'DELIVERED';
+    default:
+      return 'ONWAY'
+  }
+}

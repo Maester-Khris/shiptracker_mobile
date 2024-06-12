@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router} from '@angular/router';
 import { MenuController } from '@ionic/angular';
 import { AuthService } from 'src/app/services/auth.service';
@@ -13,6 +13,7 @@ import { UIMessageService } from 'src/app/services/uimessage.service';
 export class LoginPage implements OnInit {
   email:string='';
   pass:string='';
+  isprocessing = false;
 
   constructor(
     private router:Router, 
@@ -26,15 +27,18 @@ export class LoginPage implements OnInit {
   ngOnInit() {}
 
   async connect(){
-    console.log(this.email, this.pass);
+    this.isprocessing = true;
     this.internet.getInternetStatus().then(status => {
       if(status.connected){
-        this.auth.login(this.email, this.pass).then(result=>{
-          if(result == "Login Succeed"){
-            this.router.navigateByUrl("/shippings/home");
-          }else{
-            
-          }
+        this.auth.login(this.email, this.pass).then(result_message=>{
+          this.isprocessing = false;
+          setTimeout(()=>{
+            if(result_message == "Login Succeed"){
+              this.router.navigateByUrl("/shippings/home");
+            }else{
+              this.uiMessage.presentToast(result_message,"ban-outline");
+            }
+          }, 1000);
         });
       }else{
         this.uiMessage.presentToast("Vous n'etes pas connecté à internet","cloud-offline-outline");
@@ -42,3 +46,6 @@ export class LoginPage implements OnInit {
     });
   }
 }
+
+// ======================= web test ====================
+// this.router.navigateByUrl("/shippings/home");

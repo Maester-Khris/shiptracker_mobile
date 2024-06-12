@@ -1,48 +1,32 @@
-@import url('../../../../theme/loader.css');
 
 
-ion-list{
-    height: 100%;
-    padding-top: 10px;
-    background-color: transparent!important;
+
+.head-title{
+    margin-bottom: 50px;
 }
-ion-item{
-    --background: transparent;
-}
-ion-item, ion-card{
-    width: 100%;
+ion-text{
+    margin-top: 15px;
+    line-height: 15px;
 }
 ion-card{
-    --background: #C0D6E8;
-    margin: 0;
-    position: relative;
-    margin-bottom: 10px;
+    height: 115px;
+}
+ion-item{
+    --background:transparent;
+    --padding-end:0px!important;
+    --padding-bottom:0px!important;
+    --padding-start:0px!important;
+    --padding-top:0px!important;
+    --border-color:transparent;
+    --inner-padding-end: 0px
+}
+// .item-inner{
+//     padding-right: 0px!important;
+// }
+ion-toolbar,
+ion-text,
+ion-card {
     font-family: 'Quicksand', sans-serif;
-    font-size: 17px;
-}
-ion-card p {
-    font-size: 16.5px;
-}
-.status-icon{
-    border-radius: 3px;
-    position: absolute;
-    right: 10px;
-    top: 15px;
-}
-.loader{
-    width: 20px;
-    padding: 10px;
-    aspect-ratio: 1.5;
-    background-size: calc(100%/3) 50%;
-}
-ion-icon{
-    color: #50c8ff;
-    font-size: 30px;
-}
-ion-fab-button{
-    margin-bottom: 10px;
-    margin-right: 5px;
-    height: 60px;
-    width: 60px;
-    --background: #FCA311;
+    font-size: 16px;
+    font-weight: 600;
 }
